@@ -5,11 +5,6 @@ import (
 	"fmt"
 	"time"
 
-	"kubeedge/beehive/pkg/common/config"
-	"kubeedge/beehive/pkg/common/log"
-	"kubeedge/beehive/pkg/core"
-	"kubeedge/beehive/pkg/core/context"
-	"kubeedge/beehive/pkg/core/model"
 	"k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/types"
 	"k8s.io/apimachinery/pkg/util/clock"
@@ -37,7 +32,13 @@ import (
 	"k8s.io/kubernetes/pkg/volume/empty_dir"
 	"k8s.io/kubernetes/pkg/volume/host_path"
 	secretvolume "k8s.io/kubernetes/pkg/volume/secret"
+	"kubeedge/beehive/pkg/common/config"
+	"kubeedge/beehive/pkg/common/log"
+	"kubeedge/beehive/pkg/core"
+	"kubeedge/beehive/pkg/core/context"
+	"kubeedge/beehive/pkg/core/model"
 
+	"k8s.io/kubernetes/pkg/kubelet/status"
 	"kubeedge/beehive/pkg/common/util"
 	"kubeedge/pkg/edged/apis"
 	"kubeedge/pkg/edged/containers"
@@ -53,7 +54,6 @@ import (
 	utilpod "kubeedge/pkg/edged/util/pod"
 	"kubeedge/pkg/edged/util/record"
 	"kubeedge/pkg/metamanager"
-	"k8s.io/kubernetes/pkg/kubelet/status"
 )
 
 const (
@@ -278,6 +278,9 @@ func NewEdged() (*edged, error) {
 	ed.store = store.NewStore("")
 	ed.server = server.NewServer(ed.podManager)
 	ed.volumePluginMgr, err = NewInitializedVolumePluginMgr(ed, ProbeVolumePlugins(""))
+	if err != nil {
+		return nil, fmt.Errorf("init VolumePluginMgr failed with error %s", err.Error())
+	}
 	ed.volumeManager = volumemanager.NewVolumeManager(
 		false,
 		types.NodeName(ed.nodeName),
