@@ -174,7 +174,6 @@ create_edge_config() {
     sed -i "s|api-version: .*|api-version: ${DIS_API_VERSION}|g" ${CURRENT_PATH}/conf/edge.yaml
     sed -i "s|region: .*|region: ${REGION}|g" ${CURRENT_PATH}/conf/edge.yaml
     sed -i "s|obs_endpoint: .*|obs_endpoint: ${OBS_URL}|g" ${CURRENT_PATH}/conf/edge.yaml
-    sed -i "s|^        url: .*|        url: ${DIS_URL}|g" ${CURRENT_PATH}/conf/edge.yaml
 }
 
 
