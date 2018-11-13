@@ -16,7 +16,7 @@ import (
 	"github.com/kubeedge/kubeedge/pkg/edgehub/clients"
 	"github.com/kubeedge/kubeedge/pkg/edgehub/config"
 
-	http_utils "kubeedge/pkg/edgehub/common/http"
+	http_utils "github.com/kubeedge/kubeedge/pkg/edgehub/common/http"
 )
 
 const (
