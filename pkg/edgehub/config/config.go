@@ -65,6 +65,20 @@ func getWebSocketConfig() error {
 	}
 	edgeHubConfig.WSConfig.Url = url
 
+	certFile, err := config.CONFIG.GetValue("edgehub.websocket.certfile").ToString()
+	if err != nil {
+		log.LOGGER.Errorf("failed to get cert file for web socket client: %v", err)
+		return fmt.Errorf("failed to get cert file for web socket client, error: %v", err)
+	}
+	edgeHubConfig.WSConfig.CertFilePath = certFile
+
+	keyFile, err := config.CONFIG.GetValue("edgehub.websocket.keyfile").ToString()
+	if err != nil {
+		log.LOGGER.Errorf("failed to get key file for web socket client: %v", err)
+		return fmt.Errorf("failed to get key file for web socket client, error: %v", err)
+	}
+	edgeHubConfig.WSConfig.KeyFilePath = keyFile
+	
 	writeDeadline, err := config.CONFIG.GetValue("edgehub.websocket.write-deadline").ToInt()
 	if err != nil {
 		log.LOGGER.Warnf("failed to get key file for web socket client")
