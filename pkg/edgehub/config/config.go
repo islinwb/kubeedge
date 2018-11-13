@@ -22,6 +22,8 @@ const (
 
 type WebSocketConfig struct {
 	Url              string
+	CertFilePath     string
+	KeyFilePath      string
 	HandshakeTimeout time.Duration
 	ReadDeadline     time.Duration
 	WriteDeadline    time.Duration
