@@ -9,6 +9,11 @@ edgehub:
         handshake-timeout: 30 #second
         write-deadline: 15 # second
         read-deadline: 15 # second
+    dis-client:
+        url: https://dis.cn-north-1.myhwclouds.com:1445
+        api-version: v2
+        region: southchina
+        project-id: 30039e9041f347299e26a0efb00fcdc7
     controller:
         heartbeat: 15  # second
         refresh-ak-sk-interval: 10 # minute
