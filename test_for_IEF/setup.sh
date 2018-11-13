@@ -2,7 +2,7 @@
 
 if [ "$1" = "" ]
 then
-    SRC_DIR=$GOPATH/src/kubeedge
+    SRC_DIR=$GOPATH/src/github.com/kubeedge/kubeedge
 else
     SRC_DIR=$1
 fi
