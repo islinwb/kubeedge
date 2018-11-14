@@ -2,7 +2,7 @@ package eventbus
 
 import (
 	"encoding/json"
-
+	"fmt"
 	"github.com/kubeedge/kubeedge/beehive/pkg/common/config"
 	"github.com/kubeedge/kubeedge/beehive/pkg/common/log"
 	"github.com/kubeedge/kubeedge/beehive/pkg/core"
@@ -95,6 +95,14 @@ func (eb *eventbus) pubCloudMsgToEdge() {
 					content := accessInfo.GetContent().(string)
 					payload = []byte(content)
 				}
+				pubMQTT(topic, payload)
+			case "get_result":
+				if resource != "auth_info" {
+					log.LOGGER.Info("skip none auth_info get_result message")
+					return
+				}
+				topic := fmt.Sprintf("$hw/events/node/%s/authInfo/get/result", mqttBus.NodeID)
+				payload, _ := json.Marshal(accessInfo.GetContent())
 				pubMQTT(topic, payload)
 			default:
 				log.LOGGER.Warnf("action not found")
