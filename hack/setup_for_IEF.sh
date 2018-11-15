@@ -28,7 +28,7 @@ if [ ! -d kubeedge_work_dir ]; then
 else
 	rm -rf kubeedge_work_dir/*
 fi
-KUBEEDGE_WORK_DIR=`pwd`/kubeedge_work_dir/
+KUBEEDGE_WORK_DIR=`pwd`/kubeedge_work_dir
 
 echo "unzip to get the certificates and user_config..."
 tar -zxvf ${NODE_CONFIG_FILE} -C kubeedge_work_dir/
