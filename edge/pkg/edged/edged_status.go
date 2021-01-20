@@ -112,6 +112,19 @@ func (e *edged) initialNode() (*v1.Node, error) {
 	node.Status.Capacity[v1.ResourcePods] = *resource.NewQuantity(110, resource.DecimalSI)
 	node.Status.Allocatable[v1.ResourcePods] = *resource.NewQuantity(110, resource.DecimalSI)
 
+	// taint on edgenodes
+	EdgeNodeTaintKey := "node.kubernetes.io/edge"
+	EdgeNodeTaintValue := "true"
+	EdgeNodeTaintEffect := v1.TaintEffectNoSchedule
+
+	node.Spec.Taints = []v1.Taint{
+		{
+			Key:    EdgeNodeTaintKey,
+			Value:  EdgeNodeTaintValue,
+			Effect: EdgeNodeTaintEffect,
+		},
+	}
+
 	return node, nil
 }
 
