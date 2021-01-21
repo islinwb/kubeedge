@@ -25,6 +25,8 @@ jobs:
         with:
           fetch-depth: 0
 
+      - run: go mod vendor
+         
       - run: make WHAT=keadm
       
       - run: make WHAT=edgecore
