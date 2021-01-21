@@ -25,15 +25,10 @@ jobs:
         with:
           fetch-depth: 0
 
-      - run: make
+      - run: make WHAT=keadm
+      
+      - run: make WHAT=edgecore
 
-      - run: make bluetoothdevice
-
-      - run: make smallbuild
-
-      - run: make crossbuild
-
-      - run: make crossbuild GOARM=GOARM7
       - name: Upload the artifacts
         uses: skx/github-action-publish-binaries@master
         env:
