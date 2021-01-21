@@ -27,9 +27,9 @@ jobs:
 
       - run: go mod vendor
          
-      - run: make WHAT=keadm
+      - run: make WHAT=keadm --debug
       
-      - run: make WHAT=edgecore
+      - run: make WHAT=edgecore --debug
 
       - name: Upload the artifacts
         uses: skx/github-action-publish-binaries@master
