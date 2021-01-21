@@ -27,7 +27,7 @@ jobs:
 
       - run: go mod vendor
          
-      - run: make WHAT=keadm --debug
+      - run: make --debug
       
       - run: make WHAT=edgecore --debug
 
